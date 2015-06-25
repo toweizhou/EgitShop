@@ -47,7 +47,7 @@ public class AddToCartServlet extends HttpServlet {
 		String goodsId = request.getParameter("goodsId");
 		
 		HttpSession session = request.getSession();
-		ArrayList cart = (ArrayList)session.getAttribute("session");
+		ArrayList cart = (ArrayList)session.getAttribute("cart");
 		
 		CartManager cartM = new CartManager();
 		
