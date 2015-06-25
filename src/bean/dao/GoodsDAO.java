@@ -39,4 +39,30 @@ public class GoodsDAO {
 
 		return goodsList;
 	}
+
+	public GoodsVo getGoodsById(String goodsId) {
+		GoodsVo g = null;
+
+		DBBean db = new DBBean();
+		Connection con = db.getConnection();
+		ResultSet rs = null;
+
+		ArrayList params = new ArrayList();
+		params.add(goodsId);
+
+		try {
+			rs = db.executeQuery("select * from goods where goodsid=?", params);
+			if (rs != null) {
+				rs.next();
+				g = new GoodsVo();
+				g.setGoodsId(rs.getString("goodsid"));
+				g.setGoodsName(rs.getString("goodsname"));
+				g.setPrice(rs.getFloat("price"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return g;
+	}
 }
